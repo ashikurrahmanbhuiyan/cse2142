@@ -12,11 +12,7 @@ public class StudentList {
 		if (args[0].equals("a")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader students = new BufferedReader(
-						new InputStreamReader(
-								new FileInputStream("students.txt")));
-				String read = students.readLine();
-				students.close();
+				String read = students();
 				String student[] = read.split(", ");
 				for (String names : student) {
 					System.out.println(names);
@@ -27,11 +23,7 @@ public class StudentList {
 		} else if (args[0].equals("r")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader students = new BufferedReader(
-						new InputStreamReader(
-								new FileInputStream("students.txt")));
-				String read = students.readLine();
-				students.close();
+				String read = students();
 				String student[] = read.split(", ");
 				Random pick = new Random();
 				int picked = pick.nextInt(student.length);
@@ -42,8 +34,7 @@ public class StudentList {
 		} else if (args[0].contains("+")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedWriter students = new BufferedWriter(
-						new FileWriter("students.txt", true));
+				BufferedWriter students = student();
 				String t = args[0].substring(1);
 				Date date = new Date();
 				String format= "dd/mm/yyyy-hh:mm:ss a";
@@ -58,12 +49,8 @@ public class StudentList {
 		} else if (args[0].contains("?")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader students = new BufferedReader(
-						new InputStreamReader(
-								new FileInputStream("students.txt")));
-				String reader = students.readLine();
-				students.close();
-				String student[] = reader.split(", ");
+				String read = students();
+				String student[] = read.split(", ");
 				boolean done = false;
 				String t = args[0].substring(1);
 				for (int idx = 0; idx < student.length && !done; idx++) {
@@ -78,11 +65,7 @@ public class StudentList {
 		} else if (args[0].contains("c")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader students = new BufferedReader(
-						new InputStreamReader(
-								new FileInputStream("students.txt")));
-				String read = students.readLine();
-				students.close();
+				String read = students();
 				char letters[] = read.toCharArray();
 				boolean in_word = false;
 				int count = 0;
@@ -104,5 +87,20 @@ public class StudentList {
 			System.out.println("put a valid argument");
 		}
 	}
+	}
+
+	private static BufferedWriter student() throws IOException {
+		BufferedWriter students = new BufferedWriter(
+				new FileWriter("students.txt", true));
+		return students;
+	}
+
+	private static String students() throws FileNotFoundException, IOException {
+		BufferedReader students = new BufferedReader(
+				new InputStreamReader(
+						new FileInputStream("students.txt")));
+		String read = students.readLine();
+		students.close();
+		return read;
 	}
 }
