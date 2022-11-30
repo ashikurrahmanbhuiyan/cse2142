@@ -6,6 +6,9 @@ public class StudentList {
 	public static void main(String[] args) {
 
 		// Check arguments
+		if(args.length == 0){
+			System.out.println("put a valid argument");
+		}else{
 		if (args[0].equals("a")) {
 			System.out.println("Loading data ...");
 			try {
@@ -93,6 +96,9 @@ public class StudentList {
 			} catch (Exception e) {
 			}
 			System.out.println("Data Loaded.");
+		}else{
+			System.out.println("put a valid argument");
 		}
+	}
 	}
 }
