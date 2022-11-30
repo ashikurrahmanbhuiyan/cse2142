@@ -53,19 +53,8 @@ public class StudentList {
 		} else if (args[0].contains(constants.countCommand)) {
 			System.out.println(constants.waitingMessage);
 			try {
-				boolean in_word = false;
-				int count = 0;
-				for (char letter : students().toCharArray()) {
-					if (letter == constants.singleSpaceChar) {
-						if (!in_word) {
-							count++;
-							in_word = true;
-						} else {
-							in_word = false;
-						}
-					}
-				}
-				System.out.println(count + constants.countMessage);
+				String student[] = students().split(constants.separator);  
+				System.out.println(student.length + constants.countMessage);
 			} catch (Exception e) {
 			}
 			System.out.println(constants.endMessage);
