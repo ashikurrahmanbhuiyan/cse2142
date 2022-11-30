@@ -41,11 +41,10 @@ public class StudentList {
 			System.out.println(constants.waitingMessage);
 			try {
 				String student[] = students().split(constants.separator);
-				boolean done = false;
-				for (int idx = 0; idx < student.length && !done; idx++) {
+				for (int idx = 0; idx < student.length; idx++) {
 					if (student[idx].equals(args[0].substring(constants.one))) {
 						System.out.println(constants.foundMessage);
-						done = true;
+						break;
 					}
 				}
 			} catch (Exception e) {
