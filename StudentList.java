@@ -7,21 +7,21 @@ public class StudentList {
 
 		// Check arguments
 		if(args.length != 1){
-			System.out.println(constants.errorMessage);
+			System.out.println(constants.errorMessage);   // show error message
 		}else{
-		if (args[0].equals(constants.displayCommand)) {
-			System.out.println(constants.waitingMessage);
+		if (args[0].equals(constants.displayCommand)) {   // display all
+			System.out.println(constants.waitingMessage); // waiting to load data
 			try {
-				for (String names : students().split(constants.separator))
+				for (String names : students().split(constants.separator)) // separator between string
 					System.out.println(names);
 			} catch (Exception e) {
 			}
-			System.out.println(constants.endMessage);
-		} else if (args[0].equals(constants.randomAccessCommand)) {
+			System.out.println(constants.endMessage); //data load finish
+		} else if (args[0].equals(constants.randomAccessCommand)) { // random access data
 			System.out.println(constants.waitingMessage);
 			try {
 				String student[] = students().split(constants.separator);
-				Random pick = new Random();
+				Random pick = new Random();   //
 				System.out.println(student[pick.nextInt(student.length)]);
 			} catch (Exception e) {
 			}
