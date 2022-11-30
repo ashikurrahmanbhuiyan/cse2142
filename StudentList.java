@@ -12,22 +12,17 @@ public class StudentList {
 		if (args[0].equals(constants.displayCommand)) {
 			System.out.println(constants.waitingMessage);
 			try {
-				String read = students();
-				String student[] = read.split(constants.separator);
-				for (String names : student) {
+				for (String names : students().split(constants.separator))
 					System.out.println(names);
-				}
 			} catch (Exception e) {
 			}
 			System.out.println(constants.endMessage);
 		} else if (args[0].equals(constants.randomAccessCommand)) {
 			System.out.println(constants.waitingMessage);
 			try {
-				String read = students();
-				String student[] = read.split(constants.separator);
+				String student[] = students().split(constants.separator);
 				Random pick = new Random();
-				int picked = pick.nextInt(student.length);
-				System.out.println(student[picked]);
+				System.out.println(student[pick.nextInt(student.length)]);
 			} catch (Exception e) {
 			}
 			System.out.println(constants.endMessage);
@@ -35,26 +30,20 @@ public class StudentList {
 			System.out.println(constants.waitingMessage);
 			try {
 				BufferedWriter students = student();
-				String t = args[0].substring(constants.one);
 				Date date = new Date();
-				String format= constants.timeFormat;
-				DateFormat dateFormat = new SimpleDateFormat(format);
-				String dates = dateFormat.format(date);
-				students.write(constants.separator + t + constants.updateMessage + dates);
+				DateFormat dateFormat = new SimpleDateFormat(constants.timeFormat);
+				students.write(constants.separator + args[0].substring(constants.one) + constants.updateMessage + dateFormat.format(date));
 				students.close();
 			} catch (Exception e) {
 			}
-
 			System.out.println(constants.endMessage);
 		} else if (args[0].contains(constants.searchCommand)) {
 			System.out.println(constants.waitingMessage);
 			try {
-				String read = students();
-				String student[] = read.split(constants.separator);
+				String student[] = students().split(constants.separator);
 				boolean done = false;
-				String t = args[0].substring(constants.one);
 				for (int idx = 0; idx < student.length && !done; idx++) {
-					if (student[idx].equals(t)) {
+					if (student[idx].equals(args[0].substring(constants.one))) {
 						System.out.println(constants.foundMessage);
 						done = true;
 					}
@@ -65,11 +54,9 @@ public class StudentList {
 		} else if (args[0].contains(constants.countCommand)) {
 			System.out.println(constants.waitingMessage);
 			try {
-				String read = students();
-				char letters[] = read.toCharArray();
 				boolean in_word = false;
 				int count = 0;
-				for (char letter : letters) {
+				for (char letter : students().toCharArray()) {
 					if (letter == constants.singleSpaceChar) {
 						if (!in_word) {
 							count++;
